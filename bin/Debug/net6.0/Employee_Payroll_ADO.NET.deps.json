@@ -1,0 +1,23 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v6.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v6.0": {
+      "Employee_Payroll_ADO.NET/1.0.0": {
+        "runtime": {
+          "Employee_Payroll_ADO.NET.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "Employee_Payroll_ADO.NET/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}

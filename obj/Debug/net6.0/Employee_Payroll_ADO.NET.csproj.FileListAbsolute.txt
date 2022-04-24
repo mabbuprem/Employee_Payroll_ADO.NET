@@ -1,0 +1,15 @@
+C:\Users\Swathi Mabbu\source\repos\Employee_Payroll_ADO.NET\Employee_Payroll_ADO.NET\Employee_Payroll_ADO.NET\bin\Debug\net6.0\Employee_Payroll_ADO.NET.exe
+C:\Users\Swathi Mabbu\source\repos\Employee_Payroll_ADO.NET\Employee_Payroll_ADO.NET\Employee_Payroll_ADO.NET\bin\Debug\net6.0\Employee_Payroll_ADO.NET.deps.json
+C:\Users\Swathi Mabbu\source\repos\Employee_Payroll_ADO.NET\Employee_Payroll_ADO.NET\Employee_Payroll_ADO.NET\bin\Debug\net6.0\Employee_Payroll_ADO.NET.runtimeconfig.json
+C:\Users\Swathi Mabbu\source\repos\Employee_Payroll_ADO.NET\Employee_Payroll_ADO.NET\Employee_Payroll_ADO.NET\bin\Debug\net6.0\Employee_Payroll_ADO.NET.dll
+C:\Users\Swathi Mabbu\source\repos\Employee_Payroll_ADO.NET\Employee_Payroll_ADO.NET\Employee_Payroll_ADO.NET\bin\Debug\net6.0\ref\Employee_Payroll_ADO.NET.dll
+C:\Users\Swathi Mabbu\source\repos\Employee_Payroll_ADO.NET\Employee_Payroll_ADO.NET\Employee_Payroll_ADO.NET\bin\Debug\net6.0\Employee_Payroll_ADO.NET.pdb
+C:\Users\Swathi Mabbu\source\repos\Employee_Payroll_ADO.NET\Employee_Payroll_ADO.NET\Employee_Payroll_ADO.NET\obj\Debug\net6.0\Employee_Payroll_ADO.NET.csproj.AssemblyReference.cache
+C:\Users\Swathi Mabbu\source\repos\Employee_Payroll_ADO.NET\Employee_Payroll_ADO.NET\Employee_Payroll_ADO.NET\obj\Debug\net6.0\Employee_Payroll_ADO.NET.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Swathi Mabbu\source\repos\Employee_Payroll_ADO.NET\Employee_Payroll_ADO.NET\Employee_Payroll_ADO.NET\obj\Debug\net6.0\Employee_Payroll_ADO.NET.AssemblyInfoInputs.cache
+C:\Users\Swathi Mabbu\source\repos\Employee_Payroll_ADO.NET\Employee_Payroll_ADO.NET\Employee_Payroll_ADO.NET\obj\Debug\net6.0\Employee_Payroll_ADO.NET.AssemblyInfo.cs
+C:\Users\Swathi Mabbu\source\repos\Employee_Payroll_ADO.NET\Employee_Payroll_ADO.NET\Employee_Payroll_ADO.NET\obj\Debug\net6.0\Employee_Payroll_ADO.NET.csproj.CoreCompileInputs.cache
+C:\Users\Swathi Mabbu\source\repos\Employee_Payroll_ADO.NET\Employee_Payroll_ADO.NET\Employee_Payroll_ADO.NET\obj\Debug\net6.0\Employee_Payroll_ADO.NET.dll
+C:\Users\Swathi Mabbu\source\repos\Employee_Payroll_ADO.NET\Employee_Payroll_ADO.NET\Employee_Payroll_ADO.NET\obj\Debug\net6.0\ref\Employee_Payroll_ADO.NET.dll
+C:\Users\Swathi Mabbu\source\repos\Employee_Payroll_ADO.NET\Employee_Payroll_ADO.NET\Employee_Payroll_ADO.NET\obj\Debug\net6.0\Employee_Payroll_ADO.NET.pdb
+C:\Users\Swathi Mabbu\source\repos\Employee_Payroll_ADO.NET\Employee_Payroll_ADO.NET\Employee_Payroll_ADO.NET\obj\Debug\net6.0\Employee_Payroll_ADO.NET.genruntimeconfig.cache
