@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Data.SqlClient;
+using System.Data;
 
 namespace Employee_Payroll_ADO.NET
 {
@@ -63,6 +64,95 @@ namespace Employee_Payroll_ADO.NET
             {
                 reader.Close();
                 this.conn.Close();
+            }
+        }
+        public void AddEmployeeToDatabase(Employee employee)
+        {
+            try
+            {
+                SqlCommand command = new SqlCommand("spAddEmployee", conn)
+                {
+                    CommandType = CommandType.StoredProcedure
+                };
+                command.Parameters.AddWithValue("@EmployeeName", employee.employeeName);
+                command.Parameters.AddWithValue("@Gender", employee.gender);
+                command.Parameters.AddWithValue("@PhoneNumber", employee.phoneNo);
+                command.Parameters.AddWithValue("@EmployeeAddress", employee.employeeAddress);
+                command.Parameters.AddWithValue("@StartDate", employee.startDate);
+                command.Parameters.AddWithValue("@BasicPay", employee.basicPay);
+                command.Parameters.AddWithValue("@Deductions", employee.deductions);
+                command.Parameters.AddWithValue("@IncomeTax", employee.incomeTax);
+                command.Parameters.AddWithValue("@CompanySelect", employee.companySelect);
+                command.Parameters.AddWithValue("@DepartmentSelect", employee.departmentSelect);
+                command.Parameters.AddWithValue("@EmployeeSelect", employee.employeeSelect);
+                conn.Open();
+                var result = command.ExecuteNonQuery();
+                if (result != 0)
+                {
+                    Console.WriteLine("Employee Details added in Database");
+                }
+                else
+                {
+                    Console.WriteLine("Employee Details not added in Database");
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            finally
+            {
+                conn.Close();
+            }
+        }
+        public void UpdateSalaryofEmployee(Employee employee)
+        {
+            try
+            {
+                SqlCommand command = new SqlCommand("spUpdateEmployeeSalary", conn)
+                {
+                    CommandType = CommandType.StoredProcedure
+                };
+                command.Parameters.AddWithValue("@EmployeeID", employee.employeeID);
+                command.Parameters.AddWithValue("@BasicPay", employee.basicPay);
+                command.Parameters.AddWithValue("@EmployeeName", employee.employeeName);
+                conn.Open();
+                var result = command.ExecuteNonQuery();
+                if (result != 0)
+                {
+                    Console.WriteLine("Record updated successfully");
+                }
+                else
+                {
+                    Console.WriteLine("Record not updated successfully");
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            finally { conn.Close(); }
+        }
+        public void GetAllEmployeesWithDataAdapter(string query)
+        {
+            try
+            {
+                DataSet dataSet = new DataSet();
+                SqlConnection connection;
+                using (connection = new SqlConnection(connectionString))
+                {
+                    connection.Open();
+                    SqlDataAdapter adapter = new SqlDataAdapter(query, connection);
+                    adapter.Fill(dataSet);
+                    foreach (DataRow dataRow in dataSet.Tables[0].Rows)
+                    {
+                        Console.WriteLine(dataRow["EmployeeID"] + ", " + dataRow["EmployeeName"] + ", " + ", " + dataRow["StartDate"] + ", " + dataRow["Gender"] + ", " + dataRow["PhoneNo"] + ", " + dataRow["EmployeeAddress"] + ", " + dataRow["DepartmentName"] + ", " + dataRow["BasicPay"] + ", " + dataRow["Deductions"] + ", " + dataRow["TaxablePay"] + ", " + dataRow["IncomeTax"] + ", " + dataRow["NetPay"]);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
             }
         }
     }
