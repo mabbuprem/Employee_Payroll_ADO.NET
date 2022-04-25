@@ -21,5 +21,8 @@ namespace Employee_Payroll_ADO.NET
         public double taxablePay { get; set; }
         public double incomeTax { get; set; }
         public double netPay { get; set; }
+        public int companySelect { get; set; }
+        public int employeeSelect { get; set; }
+        public int departmentSelect { get; set; }
     }
 }

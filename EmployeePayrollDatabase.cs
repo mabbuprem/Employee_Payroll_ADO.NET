@@ -2,14 +2,15 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Data.SqlClient;
+using System.Data;
 
 namespace Employee_Payroll_ADO.NET
 {
     internal class EmployeePayrollDatabase
     {
-
         public static string connectionString = @"Data Source=(localdb)\MSSQLLocalDB; Initial Catalog =payroll_service; Integrated Security = True;";
         SqlConnection conn = new SqlConnection(connectionString);
+        //UC1 & UC2 (Connectinf to database & Fetching records from Database)
         public void GetAllEmployeeRecords()
         {
             SqlDataReader reader = default;
@@ -63,6 +64,151 @@ namespace Employee_Payroll_ADO.NET
             {
                 reader.Close();
                 this.conn.Close();
+            }
+        }
+        //UC7 & UC8 Adding Employee into Payroll Table
+        public void AddEmployeeToDatabase(Employee employee)
+        {
+            try
+            {
+                SqlCommand command = new SqlCommand("spAddEmployee", conn)
+                {
+                    CommandType = CommandType.StoredProcedure
+                };
+                command.Parameters.AddWithValue("@EmployeeName", employee.employeeName);
+                command.Parameters.AddWithValue("@Gender", employee.gender);
+                command.Parameters.AddWithValue("@PhoneNumber", employee.phoneNo);
+                command.Parameters.AddWithValue("@EmployeeAddress", employee.employeeAddress);
+                command.Parameters.AddWithValue("@StartDate", employee.startDate);
+                command.Parameters.AddWithValue("@BasicPay", employee.basicPay);
+                command.Parameters.AddWithValue("@Deductions", employee.deductions);
+                command.Parameters.AddWithValue("@IncomeTax", employee.incomeTax);
+                command.Parameters.AddWithValue("@CompanySelect", employee.companySelect);
+                command.Parameters.AddWithValue("@DepartmentSelect", employee.departmentSelect);
+                command.Parameters.AddWithValue("@EmployeeSelect", employee.employeeSelect);
+                conn.Open();
+                var result = command.ExecuteNonQuery();
+                if (result != 0)
+                {
+                    Console.WriteLine("Employee Details added in Database");
+                }
+                else
+                {
+                    Console.WriteLine("Employee Details not added in Database");
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            finally
+            {
+                conn.Close();
+            }
+        }
+        //UC3 & UC4 Updating the salary of Employee through stored Procedure
+        public void UpdateSalaryofEmployee(Employee employee)
+        {
+            try
+            {
+                SqlCommand command = new SqlCommand("spUpdateEmployeeSalary", conn)
+                {
+                    CommandType = CommandType.StoredProcedure
+                };
+                command.Parameters.AddWithValue("@EmployeeID", employee.employeeID);
+                command.Parameters.AddWithValue("@BasicPay", employee.basicPay);
+                command.Parameters.AddWithValue("@EmployeeName", employee.employeeName);
+                conn.Open();
+                var result = command.ExecuteNonQuery();
+                if (result != 0)
+                {
+                    Console.WriteLine("Record updated successfully");
+                }
+                else
+                {
+                    Console.WriteLine("Record not updated successfully");
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            finally { conn.Close(); }
+        }
+        //UC5 & UC6 Fetching records from Database as per supplied Query from Program.CS Fie.
+        public void GetAllEmployeesWithDataAdapter(string query, string name = null)
+        {
+            try
+            {
+                DataSet dataSet = new DataSet();
+                SqlConnection connection;
+                using (connection = new SqlConnection(connectionString))
+                {
+                    connection.Open();
+                    SqlDataAdapter adapter = new SqlDataAdapter(query, connection);
+                    adapter.Fill(dataSet);
+                    if (query.Contains("AverageSalary"))
+                    {
+                        Console.WriteLine("Average Salary Grouped by Gender");
+                        foreach (DataRow dataRow in dataSet.Tables[0].Rows)
+                        {
+                            Console.WriteLine(dataRow["AverageSalary"] + ", " + dataRow["Gender"]);
+                        }
+                    }
+                    else if (query.Contains("TotalSalary"))
+                    {
+                        Console.WriteLine("Total Salary Grouped by Gender");
+                        foreach (DataRow dataRow in dataSet.Tables[0].Rows)
+                        {
+                            Console.WriteLine(dataRow["TotalSalary"] + ", " + dataRow["Gender"]);
+                        }
+                    }
+                    else if (query.Contains("MaximumSalary"))
+                    {
+                        Console.WriteLine("Maximum Salary Grouped by Gender");
+                        foreach (DataRow dataRow in dataSet.Tables[0].Rows)
+                        {
+                            Console.WriteLine(dataRow["MaximumSalary"] + ", " + dataRow["Gender"]);
+                        }
+                    }
+                    else if (query.Contains("MinimumSalary"))
+                    {
+                        Console.WriteLine("Minimum Salary Grouped by Gender");
+                        foreach (DataRow dataRow in dataSet.Tables[0].Rows)
+                        {
+                            Console.WriteLine(dataRow["MinimumSalary"] + ", " + dataRow["Gender"]);
+                        }
+                    }
+                    else if (query.Contains("CountSalary"))
+                    {
+                        Console.WriteLine("Counting Persons Grouped by Gender");
+                        foreach (DataRow dataRow in dataSet.Tables[0].Rows)
+                        {
+                            Console.WriteLine(dataRow["CountSalary"] + ", " + dataRow["Gender"]);
+                        }
+                    }
+                    else if (name != null)
+                    {
+                        foreach (DataRow dataRow in dataSet.Tables[0].Rows)
+                        {
+                            if (((string)dataRow["EmployeeName"]).ToUpper() == name.ToUpper())
+                            {
+                                Console.WriteLine(dataRow["EmployeeID"] + ", " + dataRow["EmployeeName"] + ", " + dataRow["StartDate"] + ", " + dataRow["Gender"] + ", " + dataRow["PhoneNo"] + ", " + dataRow["EmployeeAddress"] + ", " + dataRow["DepartmentName"] + ", " + dataRow["BasicPay"] + ", " + dataRow["Deductions"] + ", " + dataRow["TaxablePay"] + ", " + dataRow["IncomeTax"] + ", " + dataRow["NetPay"]);
+                            }
+                        }
+                    }
+                    else
+                    {
+                        foreach (DataRow dataRow in dataSet.Tables[0].Rows)
+                        {
+                            Console.WriteLine(dataRow["EmployeeID"] + ", " + dataRow["EmployeeName"] + ", " + dataRow["StartDate"] + ", " + dataRow["Gender"] + ", " + dataRow["PhoneNo"] + ", " + dataRow["EmployeeAddress"] + ", " + dataRow["DepartmentName"] + ", " + dataRow["BasicPay"] + ", " + dataRow["Deductions"] + ", " + dataRow["TaxablePay"] + ", " + dataRow["IncomeTax"] + ", " + dataRow["NetPay"]);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
             }
         }
     }
