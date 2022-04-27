@@ -23,10 +23,10 @@ namespace Employee_Payroll_ADO.NET
                 case 2:
                     Employee employee = new Employee
                     {
-                        employeeName = "Ram",
+                        employeeName = "RamSingh",
                         gender = "M",
                         phoneNo = 9991661664,
-                        employeeAddress = "Salanuthalaprakasam",
+                        employeeAddress = "VPO Kotputli, Rajasthan",
                         startDate = DateTime.Now,
                         basicPay = 1200000,
                         deductions = 200000,
@@ -40,7 +40,7 @@ namespace Employee_Payroll_ADO.NET
                 case 3:
                     Employee employee1 = new Employee
                     {
-                        employeeName = "Ram",
+                        employeeName = "RamSingh",
                         employeeID = 5,
                         basicPay = 3000000
                     };
