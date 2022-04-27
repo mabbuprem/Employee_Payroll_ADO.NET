@@ -144,9 +144,52 @@ namespace Employee_Payroll_ADO.NET
                     connection.Open();
                     SqlDataAdapter adapter = new SqlDataAdapter(query, connection);
                     adapter.Fill(dataSet);
-                    foreach (DataRow dataRow in dataSet.Tables[0].Rows)
+                    if (query.Contains("AverageSalary"))
                     {
-                        Console.WriteLine(dataRow["EmployeeID"] + ", " + dataRow["EmployeeName"] + ", " + ", " + dataRow["StartDate"] + ", " + dataRow["Gender"] + ", " + dataRow["PhoneNo"] + ", " + dataRow["EmployeeAddress"] + ", " + dataRow["DepartmentName"] + ", " + dataRow["BasicPay"] + ", " + dataRow["Deductions"] + ", " + dataRow["TaxablePay"] + ", " + dataRow["IncomeTax"] + ", " + dataRow["NetPay"]);
+                        Console.WriteLine("Average Salary Grouped by Gender");
+                        foreach (DataRow dataRow in dataSet.Tables[0].Rows)
+                        {
+                            Console.WriteLine(dataRow["AverageSalary"] + ", " + dataRow["Gender"]);
+                        }
+                    }
+                    else if (query.Contains("TotalSalary"))
+                    {
+                        Console.WriteLine("Total Salary Grouped by Gender");
+                        foreach (DataRow dataRow in dataSet.Tables[0].Rows)
+                        {
+                            Console.WriteLine(dataRow["TotalSalary"] + ", " + dataRow["Gender"]);
+                        }
+                    }
+                    else if (query.Contains("MaximumSalary"))
+                    {
+                        Console.WriteLine("Maximum Salary Grouped by Gender");
+                        foreach (DataRow dataRow in dataSet.Tables[0].Rows)
+                        {
+                            Console.WriteLine(dataRow["MaximumSalary"] + ", " + dataRow["Gender"]);
+                        }
+                    }
+                    else if (query.Contains("MinimumSalary"))
+                    {
+                        Console.WriteLine("Minimum Salary Grouped by Gender");
+                        foreach (DataRow dataRow in dataSet.Tables[0].Rows)
+                        {
+                            Console.WriteLine(dataRow["MinimumSalary"] + ", " + dataRow["Gender"]);
+                        }
+                    }
+                    else if (query.Contains("CountSalary"))
+                    {
+                        Console.WriteLine("Counting Persons Grouped by Gender");
+                        foreach (DataRow dataRow in dataSet.Tables[0].Rows)
+                        {
+                            Console.WriteLine(dataRow["CountSalary"] + ", " + dataRow["Gender"]);
+                        }
+                    }
+                    else
+                    {
+                        foreach (DataRow dataRow in dataSet.Tables[0].Rows)
+                        {
+                            Console.WriteLine(dataRow["EmployeeID"] + ", " + dataRow["EmployeeName"] + ", " + ", " + dataRow["StartDate"] + ", " + dataRow["Gender"] + ", " + dataRow["PhoneNo"] + ", " + dataRow["EmployeeAddress"] + ", " + dataRow["DepartmentName"] + ", " + dataRow["BasicPay"] + ", " + dataRow["Deductions"] + ", " + dataRow["TaxablePay"] + ", " + dataRow["IncomeTax"] + ", " + dataRow["NetPay"]);
+                        }
                     }
                 }
             }
